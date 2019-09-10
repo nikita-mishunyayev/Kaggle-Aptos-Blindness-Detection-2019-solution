@@ -16,13 +16,13 @@ Our team ranked 82nd place (TOP 3%) in the [Aptos Blindness Detection 2019 on Ka
 We tried many neural network architectures in this competition, but we achieved our two best results by blending two models: rnn and rcnn. It was an interesting competition, primarily because I had never used recurrent and convolutional neural networks before. Also, the public leaderboard is calculated with approximately 15% of the test data and private with 85%, which led to a large shake-up and to the fact that different seed gave different results, even on a private leaderboard. We flew far down, but it was a great experience, from which I learned a lot of new things.
 
 ### Models
-- From the beginning, efficientnet outperformed other models. Using fp16 (available in kaggle kernels) allowed to use bigger batch size - speeded up training and inference. Other models (like ResNet, ResNext or DenseNet) worked worse for us.
-- Models used in the final submission:
-  1. EfficientNet-B5 (best single model): 224x224 (tta with Hflip, preprocessing - crop_from_gray, circle_crop, ben_preprocess=10)
-  2. EfficientNet-B4: 256x256 (tta with Hflip, preprocessing - crop_from_gray, circle_crop, ben_preprocess=20)
-  3. EfficientNet-B5: 256x256 (tta with Hflip, preprocessing - crop_from_gray, circle_crop, ben_preprocess=30)
-  4. EfficientNet-B5: (256x256) without specific preprocess, two models with different augmentations.
-- We tried bigger image sizes but it gave worse results. EfficientNet-B2 and EfficientNet-B6 gave worse results as well.
+From the beginning, efficientnet outperformed other models. Using fp16 (available in kaggle kernels) allowed to use bigger batch size - speeded up training and inference. Other models (like ResNet, ResNext or DenseNet) worked worse for us.
+Models used in the final submission:
+1. EfficientNet-B5 (best single model): 224x224 (tta with Hflip, preprocessing - crop_from_gray, circle_crop, ben_preprocess=10)
+2. EfficientNet-B4: 256x256 (tta with Hflip, preprocessing - crop_from_gray, circle_crop, ben_preprocess=20)
+3. EfficientNet-B5: 256x256 (tta with Hflip, preprocessing - crop_from_gray, circle_crop, ben_preprocess=30)
+4. EfficientNet-B5: (256x256) without specific preprocess, two models with different augmentations.
+We tried bigger image sizes but it gave worse results. EfficientNet-B2 and EfficientNet-B6 gave worse results as well.
 
 ### Augmentations
 From [Albumentations](https://github.com/albu/albumentations) library:
