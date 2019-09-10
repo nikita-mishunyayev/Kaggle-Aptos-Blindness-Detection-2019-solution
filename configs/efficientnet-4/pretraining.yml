@@ -1,0 +1,74 @@
+model_params:
+  model: efficientnet_pretrained
+  k: 4
+  num_classes: 1
+  pretrained: True
+
+distributed_params:
+  opt_level: O1
+
+args:
+  expdir: "src"
+  logdir: &logdir "./logs/efficientnet-4/pretraining_combined_256"
+
+stages:
+
+  data_params:
+    batch_size: 32
+    num_workers: 12
+    in_csv_train: "./old_data/combined.csv"
+    in_csv_valid: "./data/train.csv"
+    class_column: "diagnosis"
+    input_column: "id_code"
+    datapath: "./old_data/"
+    image_size: 256
+    upsampling: False
+    crop_from_gray: True
+    circle_crop: True
+    normalize: True
+    ben_preprocess: 10
+    hor_flip: 0.5
+    ver_flip: 0.33
+    rotate: 360
+    random_scale: 0.25
+    random_scale_p: 0.5
+    brightness: 0.35
+    contrast: 0.35
+    color_p: 0.75
+
+  state_params:
+    num_epochs: &num_epochs 20
+    main_metric: &reduce_metric kappa_score
+    minimize_metric: False
+
+  criterion_params:
+    criterion: MSELoss
+
+  stage2:
+
+    optimizer_params:
+      optimizer: Adam
+      lr: 0.001
+      weight_decay: 0.00001
+
+    scheduler_params:
+      scheduler: OneCycleLR
+      num_steps: *num_epochs
+      lr_range: [0.001, 0.0001]
+      init_lr: 0.001
+      warmup_fraction: 0.3
+
+    callbacks_params:
+      loss:
+        callback: CriterionCallback
+      optimizer:
+        callback: OptimizerCallback
+      scheduler:
+        callback: SchedulerCallback
+        reduce_metric: *reduce_metric
+      saver:
+        callback: CheckpointCallback
+      kappa:
+        callback: KappaCallback
+        num_classes: 5
+        regression: True
