@@ -1,6 +1,6 @@
 ## Aptos Blindness Detection 2019
 
-Our team ranked 82nd place (TOP 3%) in the [Aptos Blindness Detection 2019 on Kaggle platform](https://www.kaggle.com/c/aptos2019-blindness-detection/leaderboard). This repository consists of code and configs that I used to train one of our best single model. The solution is powered by awesome [Catalyst](https://github.com/catalyst-team/catalyst) and [Albumentations](https://github.com/albu/albumentations) libraries.
+Our team ranked 76th place (TOP 3%) in the [Aptos Blindness Detection 2019 on Kaggle platform](https://www.kaggle.com/c/aptos2019-blindness-detection/leaderboard). This repository consists of code and configs that I used to train one of our best single model. The solution is powered by awesome [Catalyst](https://github.com/catalyst-team/catalyst) and [Albumentations](https://github.com/albu/albumentations) libraries.
 
 ## In this repository you can find:
 * `training.ipynb` - simple notebook with three stages of **EfficientNet(b4)** training. The first stage is pre-training on the data of 2015. The second is training at 80% of the 2019 data and choosing the best epoch number on validation. Third, training on all 2019 data. This single model gave **0.801 on Public LB (15%) and 0.917 on Private LB (85%)**
