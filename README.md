@@ -31,7 +31,7 @@ From [Albumentations](https://github.com/albu/albumentations) library:
 Hflip, VFlip,  RandomScale, CenterCrop,  RandomBrightnessContrast, ShiftScaleRotate, RandomGamma, RandomGamma, JpegCompression, HueSaturationValue, RGBShift, ChannelShuffle, ToGray, Cutout
 
 ### Training
-First 3 models were trained using [Catalyst](https://github.com/catalyst-team/catalyst) library and the last one with FastAi, both of them work on top of Pytorch.
+First 3 models were trained using [Catalyst](https://github.com/catalyst-team/catalyst) library and the last one with FastAi, all of them work on top of Pytorch.
 
 We used both ordinal regression and regression. Models with classification tasks weren't well enough to use them.
 Adam with OneCycle was used for training. WarmUp helped to get more stable results. RAdam, Label smoothing didn't help to improve the score.
